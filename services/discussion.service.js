@@ -1,11 +1,11 @@
 const Discussion = require("../models/discussion.models")
 
-class discussionService{
-    create = async(data)=>{
+class discussionService {
+    create = async (data) => {
         const document = new Discussion(data)
         return await document.save()
     }
-    read = async()=>{
+    read = async () => {
         return await Discussion.find({})
     }
 }
