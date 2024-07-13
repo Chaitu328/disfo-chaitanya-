@@ -18,7 +18,30 @@ const postNew = async (req, res) => {
     }
 }
 const getall1 = async (req, res) => {
-    const data = await discussionInstance.read()
-    res.status(200).json(data)
+    try {
+        const data = await discussionInstance.read()
+        if (data.length === 0) {
+            return res.status(404).json({ message: "No Discussions found" });
+        }
+        res.status(200).json(data)
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 }
-module.exports = { postNew, getall1 }
+
+const getSearchByUsername = async (req, res) => {
+    try {
+        const { username } = req.params;
+        // console.log(username)
+        const userData = await discussionInstance.find({ author: username });
+
+        if (!userData || userData.length === 0) {
+            return res.status(404).json({ message: "No discussions found for this user", username });
+        }
+        return res.status(200).send(userData);
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
+
+module.exports = { postNew, getall1, getSearchByUsername }
