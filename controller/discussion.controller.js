@@ -50,7 +50,7 @@ const getSearchById = async (req, res) => {
         const userID = await discussionInstance.findByID(id);
         console.log(userID)
         if (!userID) {
-            return res.status(404).json({ message: "No discussions found for this user", userID });
+            return res.status(404).json({ message: "No discussions found for this user", id });
         }
         res.status(200).json(userID)
     } catch (err) {

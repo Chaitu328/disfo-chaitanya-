@@ -13,7 +13,12 @@ class discussionService {
         return await Discussion.findOne(data)
     }
     findByID = async(id)=>{
-        return await Discussion.findById(id);
+        try {
+            return await Discussion.findById(id);
+        }catch(err){
+            return null;
+        }
+        
     }
 }
 
