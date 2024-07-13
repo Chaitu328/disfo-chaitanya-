@@ -34,14 +34,29 @@ const getSearchByUsername = async (req, res) => {
         const { username } = req.params;
         // console.log(username)
         const userData = await discussionInstance.find({ author: username });
-
-        if (!userData || userData.length === 0) {
+        console.log(userData)
+        if (!userData) {
             return res.status(404).json({ message: "No discussions found for this user", username });
         }
-        return res.status(200).send(userData);
+        res.status(200).send(userData);
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
 };
 
-module.exports = { postNew, getall1, getSearchByUsername }
+const getSearchById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const userID = await discussionInstance.findByID(id);
+        console.log(userID)
+        if (!userID) {
+            return res.status(404).json({ message: "No discussions found for this user", userID });
+        }
+        res.status(200).json(userID)
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+
+}
+
+module.exports = { postNew, getall1, getSearchByUsername, getSearchById }
