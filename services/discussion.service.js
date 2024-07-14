@@ -26,6 +26,9 @@ class discussionService {
     patch = async (filter, update, options) => {
         return await Discussion.findOneAndUpdate(filter, update, options)
     }
+    put =async()=>{
+        
+    }
 }
 
 module.exports = discussionService

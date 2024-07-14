@@ -108,4 +108,16 @@ const patchByID = async (req, res) => {
     }
 }
 
-module.exports = { postNew, getall1, getSearchByUsername, getSearchById, deleteByID, patchByID }
+const updateDiscussionWithComment = async(req,res)=>{
+    
+}
+
+module.exports = { 
+    postNew, 
+    getall1, 
+    getSearchByUsername, 
+    getSearchById, 
+    deleteByID, 
+    patchByID,
+    updateDiscussionWithComment 
+}
